@@ -122,6 +122,7 @@
             function change() {
                 let val = document.getElementsByName("input")[0].value
                 errTag = ""
+                cnt = 0
                 let res = convertToString(f(val))
                 if(errTag == "") document.getElementById("result").textContent = res
                 else document.getElementById("result").textContent = `找不到字符：${errTag}`

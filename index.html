@@ -57,7 +57,7 @@
                     for (let sublen = 1;sublen < len;sublen++) 
                         for (let startPos = 0;startPos + sublen <= len;startPos++) {
                             let substr = str.substring(startPos, startPos + sublen)
-                            let code = `截取字符串(字符串("{0}？", 英雄(${str}))), ${startPos}, ${sublen})`
+                            let code = `截取字符串(字符串("{0}？", 英雄(${str})), ${startPos}, ${sublen})`
                             addString({val: substr, code: code}, 1)
                         }
                 }

@@ -107,6 +107,25 @@
                     reg = reg.replaceAll(" ", "")
                     concatString[ind].reg = new RegExp(`^${reg}$`)
                 }
+                for (let ind in concatString) {
+                    let str = concatString[ind].val
+                    str = str.replaceAll("{0}", "？")
+                    str = str.replaceAll("{1}", "？")
+                    str = str.replaceAll("{2}", "？")
+                    let code = concatString[ind].format
+                    code = code.replaceAll("$1", concatString[ind].val)
+                    code = code.replaceAll("$2", "字符串(\"？\")")
+                    code = code.replaceAll("$3", "字符串(\"？\")")
+                    code = code.replaceAll("$4", "字符串(\"？\")")
+                    addString({val: str, code: code}, 1)
+                    let len = str.length
+                    for (let sublen = 1;sublen < len;sublen++) 
+                        for (let startPos = 0;startPos + sublen <= len;startPos++) {
+                            let substr = str.substring(startPos, startPos + sublen)
+                            let subcode = `截取字符串(${code}, ${startPos}, ${sublen})`
+                            addString({val: substr, code: subcode}, 1)
+                        }
+                }
                 concatString = concatString.sort((x, y) => y.len - x.len)
                 let re = []
                 for(let x in res0) if(x.length > 0) re.push(res0[x])
